@@ -1,0 +1,42 @@
+.card {
+    box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2);
+    max-width: 320px;
+    margin: auto 5rem;
+    text-align: center;
+    font-family: arial;
+    gap:2rem;
+   
+}
+.product--image {
+    width: 80%;
+    height: 11em;
+    object-fit: cover;
+    padding-left: 20px;
+}
+.tab{
+    background-color: #5F9EA0;
+    width: 70%;
+    height: 11em;
+    gap: calc(5vh + 5px) calc(5vw + 5px);
+    /* object-fit: cover; */
+    padding-left: 20px;
+    margin-left: 50px;
+    
+  }
+.card-button {
+    border: none;
+    outline: 0;
+    padding: 12px;
+    color: white;
+    background-color: #31beff;
+    text-align: center;
+    cursor: pointer;
+    width: 50%;
+    font-size: 18px;
+    margin-top: 10px;
+}
+  
+.card-button:hover {
+    opacity: 0.7;
+    background-color: aqua;
+ }
