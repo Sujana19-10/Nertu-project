@@ -1,0 +1,18 @@
+{
+  "files": {
+    "main.css": "/Nertu-project/static/css/main.139721fc.css",
+    "main.js": "/Nertu-project/static/js/main.1b8b6952.js",
+    "static/media/2.jpg": "/Nertu-project/static/media/2.bbb41348bb839b9124d8.jpg",
+    "static/media/night.jpg": "/Nertu-project/static/media/night.ac6d287d5d0014553b87.jpg",
+    "static/media/revicons.eot": "/Nertu-project/static/media/revicons.a77de540a38981833f9e.eot",
+    "static/media/revicons.ttf": "/Nertu-project/static/media/revicons.57fd05d4ae650374c8de.ttf",
+    "static/media/revicons.woff": "/Nertu-project/static/media/revicons.e8746a624ed098489406.woff",
+    "index.html": "/Nertu-project/index.html",
+    "main.139721fc.css.map": "/Nertu-project/static/css/main.139721fc.css.map",
+    "main.1b8b6952.js.map": "/Nertu-project/static/js/main.1b8b6952.js.map"
+  },
+  "entrypoints": [
+    "static/css/main.139721fc.css",
+    "static/js/main.1b8b6952.js"
+  ]
+}
