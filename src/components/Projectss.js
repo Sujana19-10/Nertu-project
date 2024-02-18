@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import Table from 'react-bootstrap/Table';
 import Form from 'react-bootstrap/Form';
 import InputGroup from 'react-bootstrap/InputGroup';
@@ -10,49 +10,48 @@ const Projectss = () => {
   const [data, setData] = useState(dataList);
   const [search, setSearch] = useState('');
   const [startFilter, setStartFilter] = useState('All');
-  const [endFilter, setEndFilter] = useState('All');
 
-  const excludeColumns = ["S.No", "Amount"];
+  const excludeColumns = ["S.No", "Amount", "End"]; // Exclude "End" column from filtering
 
-  const handleChange = (value) => {
-    setSearch(value);
-    filterData(value);
-  }
+  useEffect(() => {
+    const filterData = (value, start) => {
+      const lowercasedValue = value.toLowerCase().trim();
 
-  const handleStartFilterChange = (value) => {
-    setStartFilter(value);
-    filterData(search, value, endFilter);
-  }
-
-  const handleEndFilterChange = (value) => {
-    setEndFilter(value);
-    filterData(search, startFilter, value);
-  }
-
-  const filterData = (value, start, end) => {
-    const lowercasedValue = value.toLowerCase().trim();
-
-    if (lowercasedValue === '') setData(dataList);
-    else {
       const filteredData = dataList.filter((item) => {
+        const startMatch = start === 'All' || item['Start'].toString() === start;
+
         return (
           Object.keys(item).some((key) =>
             excludeColumns.includes(key)
               ? false
               : item[key].toString().toLowerCase().includes(lowercasedValue)
-          ) &&
-          (start === 'All' || start === item['Start']) &&
-          (end === 'All' || end === item['End'])
+          ) && startMatch
         );
-      })
+      });
+
+      // Sort filteredData by the "Start" column in descending order
+      filteredData.sort((a, b) => b.Start - a.Start);
+
       setData(filteredData);
-    }
+    };
+
+    filterData(search, startFilter);
+  }, [search, startFilter]);
+
+  const handleChange = (value) => {
+    setSearch(value);
   };
 
+  const handleStartFilterChange = (value) => {
+    setStartFilter(value);
+  };
+
+  const startOptions = ["All", ...Array.from(new Set(dataList.map((item) => item.Start.toString())))];
+
   return (
-    <div id="projects" className='m-5'>
+    <div id="projects" className='m-4 pt-2'>
       <div>
-        <h1 className='text-center text-info py-5 mt-5'>Projects</h1>
+        <h1 className='text-center text-info py-5 mt-5' style={{fontWeight:800, fontSize:40}}>Projects</h1>
         <Form>
           <center>
             <InputGroup className='w-75'>
@@ -69,93 +68,40 @@ const Projectss = () => {
       </div>
 
       <Table striped bordered hover className='bg-light mt-3 ml-3 mr-3'>
-        <thead>
+        <thead style={{ border: 30 }}>
           <tr>
             <th>S.No</th>
-            <th>Title</th>
+            <th className='p-3'>Title</th>
             <th>Amount ( Rs. in lakhs)</th>
             <th>
               <Dropdown onSelect={(eventKey) => handleStartFilterChange(eventKey)}>
-                <Dropdown.Toggle variant="light" id="dropdown-start">
+                <Dropdown.Toggle variant="light" id="dropdown-start" style={{fontWeight:630}}>
                   Start
                 </Dropdown.Toggle>
                 <Dropdown.Menu>
-                  <Dropdown.Item eventKey="All">All</Dropdown.Item>
-                  <Dropdown.Item eventKey="2014">2014</Dropdown.Item>
-                  <Dropdown.Item eventKey="2012">2012</Dropdown.Item>
-                  <Dropdown.Item eventKey="2010">2010</Dropdown.Item>
-                  <Dropdown.Item eventKey="2009">2009</Dropdown.Item>
-                  <Dropdown.Item eventKey="2007">2007</Dropdown.Item>
-                  <Dropdown.Item eventKey="2006">2006</Dropdown.Item>
-                  <Dropdown.Item eventKey="2005">2005</Dropdown.Item>
-                  <Dropdown.Item eventKey="2004">2004</Dropdown.Item>
-                  <Dropdown.Item eventKey="2003">2003</Dropdown.Item>
-                  <Dropdown.Item eventKey="2002">2002</Dropdown.Item>
-                  <Dropdown.Item eventKey="2001">2001</Dropdown.Item>
-                  <Dropdown.Item eventKey="1999">1999</Dropdown.Item>
-                  <Dropdown.Item eventKey="1998">1998</Dropdown.Item>
-                  <Dropdown.Item eventKey="1997">1997</Dropdown.Item>
-                  <Dropdown.Item eventKey="1996">1996</Dropdown.Item>
-                  <Dropdown.Item eventKey="1995">1995</Dropdown.Item>
-                  <Dropdown.Item eventKey="1994">1994</Dropdown.Item>
-                  <Dropdown.Item eventKey="1993">1993</Dropdown.Item>
-                  <Dropdown.Item eventKey="1992">1992</Dropdown.Item>
-                  <Dropdown.Item eventKey="1991">1991</Dropdown.Item>
-                  <Dropdown.Item eventKey="1989">1989</Dropdown.Item>
-                  <Dropdown.Item eventKey="1987">1987</Dropdown.Item>
-
-                  
-                  
+                  {startOptions.map((year, index) => (
+                    <Dropdown.Item
+                      key={index}
+                      eventKey={year}
+                      active={startFilter === year}
+                    >
+                      {year}
+                    </Dropdown.Item>
+                  ))}
                 </Dropdown.Menu>
               </Dropdown>
             </th>
-            <th>
-              <Dropdown onSelect={(eventKey) => handleEndFilterChange(eventKey)}>
-                <Dropdown.Toggle variant="light" id="dropdown-end">
-                  End
-                </Dropdown.Toggle>
-                <Dropdown.Menu>
-                  <Dropdown.Item eventKey="All">All</Dropdown.Item>
-                  <Dropdown.Item eventKey="2015">2015</Dropdown.Item>
-                  <Dropdown.Item eventKey="2014">2014</Dropdown.Item>
-                  <Dropdown.Item eventKey="2012">2012</Dropdown.Item>
-                  <Dropdown.Item eventKey="2010">2010</Dropdown.Item>
-                  <Dropdown.Item eventKey="2009">2009</Dropdown.Item>
-                  <Dropdown.Item eventKey="2008">2008</Dropdown.Item>
-                  <Dropdown.Item eventKey="2007">2007</Dropdown.Item>
-                  <Dropdown.Item eventKey="2006">2006</Dropdown.Item>
-                  <Dropdown.Item eventKey="2005">2005</Dropdown.Item>
-                  <Dropdown.Item eventKey="2004">2004</Dropdown.Item>
-                  <Dropdown.Item eventKey="2003">2003</Dropdown.Item>
-                  <Dropdown.Item eventKey="2002">2002</Dropdown.Item>
-                  <Dropdown.Item eventKey="2001">2001</Dropdown.Item>
-                  <Dropdown.Item eventKey="2000">2000</Dropdown.Item>
-                  <Dropdown.Item eventKey="1999">1999</Dropdown.Item>
-                  <Dropdown.Item eventKey="1998">1998</Dropdown.Item>
-                  <Dropdown.Item eventKey="1997">1997</Dropdown.Item>
-                  <Dropdown.Item eventKey="1996">1996</Dropdown.Item>
-                  <Dropdown.Item eventKey="1995">1995</Dropdown.Item>
-                  <Dropdown.Item eventKey="1994">1994</Dropdown.Item>
-                  <Dropdown.Item eventKey="1993">1993</Dropdown.Item>
-                  <Dropdown.Item eventKey="1992">1992</Dropdown.Item>
-                  <Dropdown.Item eventKey="1991">1991</Dropdown.Item>
-                  <Dropdown.Item eventKey="1990">1990</Dropdown.Item>
-                  <Dropdown.Item eventKey="1989">1989</Dropdown.Item>
-                  <Dropdown.Item eventKey="1987">1987</Dropdown.Item>
-                  
-                </Dropdown.Menu>
-              </Dropdown>
-            </th>
+            <th>End</th>
             <th>Project Code</th>
-            <th>Sponsoring Agency</th>
+            <th style={{width:200}}>Sponsoring Agency</th>
             <th>Investigator</th>
           </tr>
         </thead>
         <tbody>
           {data.map((item, index) => (
-            <tr key={index}>
+            <tr key={index} className="p-3" style={{ border: 10}}>
               <td>{item['S.No']}</td>
-              <td className="text-start">{item.Title_Project}</td>
+              <td className="text-start" style={{fontWeight:550}}>{item.Title_Project}</td>
               <td>{item["Amount"]}</td>
               <td>{item.Start}</td>
               <td>{item.End}</td>

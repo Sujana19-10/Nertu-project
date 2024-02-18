@@ -1,29 +1,50 @@
 .container {
-    border-color: black;
-    display: flex;
-    text-align: center;
-    background-color: #add8e6;
-    margin-top: 5%;
-    
+  border-color: black;
+  display: flex;
+  text-align: center;
+  background-color: #add8e6;
+  margin-top: 5%;
+}
+
+.image-container {
+  position: relative;
+  width: 100%;
+  height: 600px; /* Adjust the height as needed */
+  overflow: hidden; /* Hide overflow content */
+}
+
+.brown-overlay {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  width: 100%;
+  height: 50px; /* Adjust the height of the brown section */
+  background-color: rgb(161, 47, 47);
+  overflow: hidden; /* Hide overflow content */
+}
+
+.brown-overlay p {
+  display: inline-block;
+  margin: 10px;
+  color: white;
+  padding-right: 20px;
+}
+
+.advertisement {
+  white-space: nowrap; /* Prevent line breaks */
+}
+
+/* Animation */
+@keyframes marquee {
+  0% {
+    transform: translateX(100%); /* Start off-screen from the right */
   }
+  100% {
+    transform: translateX(-100%); /* Move to the left */
+  }
+}
 
-
-  
-    .top-right-image {
-      margin-top: 3%;
-        width: 10%;
-      height: 30%;
-      position: relative;
-    }
-    .collegetext {
-     
-      font-size: x-large;
-     
-      font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
-      color: blue;
-      }
-    .text {
-      margin-top: 1%;
-      line-height: 20%;
-      font-size: x-small;
-    }
+.brown-overlay p:not(:last-child) {
+  border-right: 1px solid white; /* Add vertical line between advertisements */
+}
+    

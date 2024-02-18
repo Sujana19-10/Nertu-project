@@ -24,13 +24,13 @@ const RecentPublications = () => {
         }
       };
       return (
-        <div className='App'>
-          <h1 className='mt-5'>Research publications 
+        <div className='App mb-5'>
+          <h1 className='text-center text-danger mt-5'>Research publications 
             
             </h1><br/>
           <Carousel responsive={responsive} className='mt-4'>
               <div className='tab'>
-              <center>
+              <center className="product--image">
                 <h4>#1</h4>     
                 <p>GNSS Receiver Design with Protocol Development (PTP/NTP) on FPGA</p>
                 <samp>Date:09-12,October 2023</samp><br/>

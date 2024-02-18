@@ -26,14 +26,15 @@ const WorkshopList = () => {
   };
   return (
     <div className='App'>
-      <h1>UpComming Workshops</h1><br/>
+      <h1 className='text-danger'>UpComming Workshops</h1><br/>
       <Carousel responsive={responsive} className='mt-4'>
           <div className='tab'>
-          <center>
+          <center className="product--image">
             <h4>#1</h4>     
             <p>GNSS Receiver Design with Protocol Development (PTP/NTP) on FPGA</p>
             <samp>Date:09-12,October 2023</samp><br/>
-            <samp>Location:bangolore</samp></center>
+            <samp>Location:bangolore</samp>
+            </center>
             <button className='card-button'>view full</button>
           
           </div>

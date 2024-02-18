@@ -1,9 +1,10 @@
-import Publications from "../components/PublicationMain";
+import React from 'react';
+import PublicationMain from '../components/PublicationMain';
 
 function Publication() {
     return(
         <>
-            <Publications/>
+            <PublicationMain/>
         </>
     )
 }

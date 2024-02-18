@@ -1,38 +1,62 @@
 export const MenuItems = [
   {
-    title: "home",
-    url: "/",
-    icon:"fa-solid fa-house",
-    cName:"nav-links"
+    title: "Home",
+    url: "/NERTU_Demo",
+    icon: "fa-solid fa-house",
+    cName: "nav-links",
+    color: "white",
   },
   {
-    title: "workshops",
-    url: "/about",
-    icon:"fa-solid fa-circle-info",
-    cName:"nav-links"
+    title: "Workshop",
+    url: "/workshop",
+    icon: "fa-solid fa-window-restore",
+    cName: "nav-links",
+    color: "white",
   },
   {
-    title: "Contacts",
-    url: "/contacts",
-    icon:"fa-solid fa-briefcase",
-    cName:"nav-links"
+    title: "Project",
+    url: "/project",
+    icon: "fa-solid fa-address-book",
+    cName: "nav-links",
+    color: "white",
+  },
+  {
+    title: "Publication",
+    url: "/publication",
+    icon: "fa-solid fa-file-lines",
+    cName: "nav-links",
+    color: "white",
   },
   {
     title: "Staff",
     url: "/staff",
-    icon:"fa-solid fa-address-book",
-    cName:"nav-links"
+    icon: "fa-solid fa-user",
+    cName: "nav-links",
+    color: "white",
   },
   {
-    title: "projects",
-    url: "/projects",
-    icon:"fa-solid fa-address-book",
-    cName:"nav-links"
+    title: "Gallery",
+    url: "/gallery",
+    icon: "fa-solid fa-image",
+    cName: "nav-links",
+    color: "white",
   },
   {
-    title: "publication",
-    url: "/publications",
-    icon:"fa-solid fa-address-book",
-    cName:"nav-links"
+    title: "Contact Us",
+    url: "/contact",
+    icon: "fa-solid fa-envelope",
+    cName: "nav-links",
+    color: "white",
+  },
+  {
+    title: "Download",
+    url: "/download",
+    icon: "fa-solid fa-download",
+    cName: "nav-links",
+    color: "white",
+    submenu: [
+      { title: "Code", url: "/code", cName: "nav-submenu", color: "white" },
+      { title: "Data", url: "/data", cName: "nav-submenu", color: "white" },
+    ],
   },
 ];
